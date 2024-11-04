@@ -1,17 +1,54 @@
-function preload() {
-  // put preload code here
-}
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  // put setup code here
-  const message =
-    "This is a template repository\nfor the course Laboratorio di Computergrafica\nCommunication Design, Politecnico di Milano";
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text(message, width / 2, height / 2);
 }
 
 function draw() {
-  // put drawing code here
+noLoop();
+background(0);
+//definisco la distanza tra i quadrati grandi
+let gutter=60;
+//definisco la grandezza dei quadrati grandi
+let larghezza=80;
+let altezza=80;
+//definisco le variabili columns e rows per disporre i quadrati grandi lungo una griglia
+let columns= (windowHeight/1.2)/(altezza+gutter);
+let rows= (windowWidth/1.2)/(larghezza+gutter);
+
+//realizzo un array per far si che si generino dei segni di colore blu
+//la probabilità che nella griglia piccola si generi un qadratino blu è di 1/5
+let colors=["blue", "black", "black", "black", "black"];
+
+//creo 4 cicli for uno dentro l'altro per avere prima la griglia di quadrati grandi e
+//poi al suo interno altre girglie contenenti quadrati più piccoli
+for(i=0; i<columns;i++){
+  for(j=0;j<rows;j++){
+      //le variabili k e l devono essere minori di 6 perchè è il numero massimo di quadratini che ho scelto per righe e colonne
+       for(k=0;k<6;k++){
+      for(l=0;l<6;l++){
+      //definisco le variabili x1 e y1 per ollocare la mia griglia grande
+      let x1= (windowWidth-(windowWidth/1.2))/2+(larghezza+gutter)*j;
+      let y1=(windowHeight-(windowHeight/1.2))/2+(altezza+gutter)*i;
+      //ora definisco invece le variabili x2 e y2 per collocare nella pagina le griglie piccole
+      let x2=(x1+((larghezza/12)*k));
+      let y2=(y1+((altezza/12)*l));
+      noFill();
+      noStroke();
+      //definisco il quadrato dentro al quale è contenuta la griglia di uadrati più piccoli
+      rect(x1,y1,larghezza,altezza);
+      push();
+      noStroke();
+      //collego i quadratini all'array in modo tale da generare i segni in maniera randomica e di colore blu
+      fill(random(colors));
+      //ora definisco i quadratini piccoli, quelli che danno vita ai segni veri e propri
+      rect(x2,y2,larghezza/12,altezza/12);
+      pop();
+      }
+      
+    } 
+  }
 }
+ 
+}
+
+
+
