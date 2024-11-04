@@ -1,22 +1,23 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  frameRate(0.5);
 }
 
 function draw() {
-noLoop();
+
 background(0);
 //definisco la distanza tra i quadrati grandi
-let gutter=60;
+let gutter=windowWidth/15;
 //definisco la grandezza dei quadrati grandi
-let larghezza=80;
-let altezza=80;
+let larghezza=windowWidth/15;
+let altezza=windowWidth/15;
 //definisco le variabili columns e rows per disporre i quadrati grandi lungo una griglia
-let columns= (windowHeight/1.2)/(altezza+gutter);
-let rows= (windowWidth/1.2)/(larghezza+gutter);
+let columns= (windowWidth/larghezza);
+let rows= (windowWidth/altezza);
 
 //realizzo un array per far si che si generino dei segni di colore blu
 //la probabilità che nella griglia piccola si generi un qadratino blu è di 1/5
-let colors=["blue", "black", "black", "black", "black"];
+let colors=["blue", "black", "black", "black"];
 
 //creo 4 cicli for uno dentro l'altro per avere prima la griglia di quadrati grandi e
 //poi al suo interno altre girglie contenenti quadrati più piccoli
@@ -27,7 +28,7 @@ for(i=0; i<columns;i++){
       for(l=0;l<6;l++){
       //definisco le variabili x1 e y1 per ollocare la mia griglia grande
       let x1= (windowWidth-(windowWidth/1.2))/2+(larghezza+gutter)*j;
-      let y1=(windowHeight-(windowHeight/1.2))/2+(altezza+gutter)*i;
+      let y1=(windowWidth-(windowWidth/1.2))/2+(altezza+gutter)*i;
       //ora definisco invece le variabili x2 e y2 per collocare nella pagina le griglie piccole
       let x2=(x1+((larghezza/12)*k));
       let y2=(y1+((altezza/12)*l));
